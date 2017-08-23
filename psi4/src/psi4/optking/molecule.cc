@@ -194,20 +194,20 @@ void MOLECULE::apply_constraint_forces(void) {
         double val = fragments[f]->coord_value(i);
 
         // Increase force constant by 5% of initial value per iteration
-        k = (1 + 0.05 * (iter-1)) * Opt_params.fixed_coord_force_constant;
-        H[cnt][cnt] = k;
+        k = Opt_params.fixed_coord_force_constant;
+        H[cnt][cnt] += k;
 
         double force = (eq_val - val) * k;
         oprintf_out("\tAdding user-defined constraint: Fragment %d; Coordinate %d:\n", f+1, i+1);
         oprintf_out("\t\tValue = %12.6f; Fixed value    = %12.6f\n", val, eq_val);
         oprintf_out("\t\tForce = %12.6f; Force constant = %12.6f\n", force, k);
-        f_q[cnt] = force;
+        f_q[cnt] += force;
 
         // If user eq. value is specified delete coupling between this coordinate and others.
-        oprintf_out("\tRemoving off-diagonal coupling between coordinate %d and others.\n", cnt+1);
+        /*oprintf_out("\tRemoving off-diagonal coupling between coordinate %d and others.\n", cnt+1);
         for (int j=0; j<N; ++j)
           if (j != cnt)
-            H[j][cnt] = H[cnt][j] = 0;
+            H[j][cnt] = H[cnt][j] = 0; */
       }
     }
   }

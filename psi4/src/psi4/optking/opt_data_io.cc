@@ -104,7 +104,7 @@ void opt_io_remove(void) {
 }
 
 void opt_intco_dat_remove(void) {
-  std::remove(FILENAME_INTCO_DAT); // rm intco definitions
+  // std::remove(FILENAME_INTCO_DAT); // rm intco definitions
 }
 
 void opt_clean(void) {

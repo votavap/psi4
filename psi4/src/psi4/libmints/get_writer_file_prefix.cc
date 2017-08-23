@@ -64,7 +64,7 @@ std::string get_writer_file_prefix(const std::string& molecule_name)
     const std::string pid="."+to_string(getpid());
     const std::string label = Process::environment.options.get_str("WRITER_FILE_LABEL");
     if (!label.empty()) {
-        return label+pid;
+        return label;//+pid;
     }
 
     // If no available options WRITER_FILE_LABEL, then we build a defult:
@@ -74,7 +74,7 @@ std::string get_writer_file_prefix(const std::string& molecule_name)
     if (!molecule_name.empty()) {
         prefix += "." + molecule_name;
     }
-    return prefix+pid;
+    return prefix;//+pid;
 
 }
 
